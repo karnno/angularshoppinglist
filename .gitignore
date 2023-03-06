@@ -1,0 +1,29 @@
+# git ignore file
+
+# Ignorer les fichiers systèmes Mac
+.DS_store
+
+# Ignorer le répertoire node_modules
+node_modules
+
+# Ignorer tous les fichiers texte
+*.txt
+
+# Ignorer les fichiers liés aux clés d'API
+.env
+
+# Ignorer les fichiers de configuration SASS
+.sass-cache
+
+# OS generated files #
+######################
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+
+
