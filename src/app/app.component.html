@@ -1,0 +1,12 @@
+<app-header (menuClicked)="receivedMenuClickedEvent($event)">the header</app-header>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <!-- <app-recipes *ngIf="loadedFeature === 'menuRecipeListClicked'"></app-recipes>
+      <app-shopping-list *ngIf="loadedFeature !== 'menuRecipeListClicked'"></app-shopping-list> -->
+
+      <!-- put the router outlet tag to tell Angular what to render depending on the Url -->
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
