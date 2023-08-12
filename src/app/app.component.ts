@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { AuthService } from './auth/auth.service';
 
 
 @Component({
@@ -6,12 +7,21 @@ import { Component } from '@angular/core';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
 
-  showRecipesList : boolean = true;
-  showRecipeIngredients:boolean = false;
 
-  loadedFeature : string = 'menuRecipeListClicked' ;
+  constructor(private authService: AuthService){
+
+  }
+
+  ngOnInit(): void {
+    console.log('app component calls auto login');
+    this.authService.autoLogin();  
+  }
+  //showRecipesList : boolean = true;
+  //showRecipeIngredients:boolean = false;
+
+  //loadedFeature : string = 'menuRecipeListClicked' ;
 
   // receivedMenuClickedEvent(menuClickedEvent: {menuClickedName:string}){
   //   console.log(menuClickedEvent.menuClickedName);
@@ -21,10 +31,14 @@ export class AppComponent {
   // }
 
 
-  receivedMenuClickedEvent(menuClickedEvent: string){
-    console.log(menuClickedEvent);
-    this.loadedFeature = menuClickedEvent;
+  // receivedMenuClickedEvent(menuClickedEvent: string){
+  //   console.log(menuClickedEvent);
+  //   this.loadedFeature = menuClickedEvent;
     
-  }
+  // }
+
+  //onNavigate(feature: string) {
+  //  this.loadedFeature = feature;
+  //}
 
 }

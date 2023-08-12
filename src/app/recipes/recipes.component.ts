@@ -6,23 +6,32 @@ import { RecipeService } from './recipe.service';
   selector: 'app-recipes',
   templateUrl: './recipes.component.html',
   styleUrls: ['./recipes.component.css'],
-  providers: [RecipeService]
+  // providers: [RecipeService] // added in course 118 // removed in course 238
 })
+
+
+/**
+ * When the recipeService was added to providers, it was available in all the sub modules .
+ * But when we open the application, and we navigate to the  shopping list and then back to  recipes list, 
+ * the recipesComponent has been destroyed, and so was the instance of the recipeService.
+ * 
+ * To make sure the recipeService survices, we add it to the AppModule's providers.
+ * 
+ */
 export class RecipesComponent implements OnInit {
 
-  selectedRecipe : Recipe; 
+  //selectedRecipe : Recipe; 
 
-  constructor(private recipeService : RecipeService) { }
+  constructor() { }
 
   ngOnInit(): void {
 
-    this.recipeService.recipeSelected.subscribe(
-      (recipeSel : Recipe)=>{
-        this.selectedRecipe = recipeSel;
-      }
+    // this.recipeService.recipeSelected.subscribe(
+    //   (recipeSel : Recipe)=>{
+    //     this.selectedRecipe = recipeSel;
+    //   }
 
-    )
-    ;
+    // );
   }
 
   // onRecipeSelectedEvent (selectedRecipe : Recipe){

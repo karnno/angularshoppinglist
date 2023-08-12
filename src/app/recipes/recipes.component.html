@@ -8,12 +8,13 @@
       </div>
 
       <div class="col-md-7">
-            <app-recipe-detail 
+            <!-- <app-recipe-detail 
                   [recipeToShow]="selectedRecipe" 
                   *ngIf="selectedRecipe; else infoText" ></app-recipe-detail>
             <ng-template #infoText>
                   <p>Please select a recipe</p>
-            </ng-template>
+            </ng-template> -->
+            <router-outlet></router-outlet>
       </div>
 
 </div>
