@@ -1,58 +1,43 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
-
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
-import { RecipesComponent } from './recipes/recipes.component';
-import { RecipeListComponent } from './recipes/recipe-list/recipe-list.component';
-import { RecipeDetailComponent } from './recipes/recipe-detail/recipe-detail.component';
-import { RecipeItemComponent } from './recipes/recipe-list/recipe-item/recipe-item.component';
-import { ShoppingListComponent } from './shopping-list/shopping-list.component';
-import { ShoppingEditComponent } from './shopping-list/shopping-edit/shopping-edit.component';
-
-import { DropdownDirective } from './shared/dropdown.directive';
-import { ShoppingListService } from './shopping-list/shopping-list.service';
 import { AppRoutingModule } from './app-routing.module';
-import { RecipeService } from './recipes/recipe.service';
-
-import { RecipeStartComponent } from './recipes/recipe-start/recipe-start.component';
-import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
-
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { AuthComponent } from './auth/auth.component';
-import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
-import { AuthInterceptorService } from './auth/auth-interceptor.service';
+import { HttpClientModule } from '@angular/common/http';
+import { ShoppingListModule } from './shopping-list/shopping-list.module';
+import { SharedModule } from './shared/shared.module';
+import { CoreModule } from './core.module';
+import { AuthModule } from './auth/auth.module';
+import { LoggingService } from './logging.service';
 
 @NgModule({
+  // all components directives etc.. you need to declare so you can use in your application
   declarations: [
     AppComponent,
-    HeaderComponent,
-    RecipesComponent,
-    RecipeListComponent,
-    RecipeDetailComponent,
-    RecipeItemComponent,
-    ShoppingListComponent,
-    ShoppingEditComponent,
-    DropdownDirective,
-    RecipeStartComponent,
-    RecipeEditComponent,
-    AuthComponent,
-    LoadingSpinnerComponent
+    HeaderComponent
+      
   ],
+  // imports array enables to import other modules, like angular core modules.
+  // careful : do NOT add modules that you lazy-load !
   imports: [
     BrowserModule,
-    FormsModule,
-    ReactiveFormsModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    SharedModule,
+    CoreModule
   ],
+  // lists the services availables by the modules
+  // some services use the "@Injectable ({providedIn: 'root'})" annotation so we can avoid adding them here ( makes the appModule cleaner !)
   providers: [
-    ShoppingListService, 
-    RecipeService,
-    { provide: HTTP_INTERCEPTORS, useClass : AuthInterceptorService , multi: true}
+    //LoggingService
   ],
-  bootstrap: [AppComponent]
+
+  // the array is important to start the app, it defines which component is available in the index.html !
+  bootstrap: [AppComponent],
+
+  // older version of angular needs entry components. 
+  // you add here the components that you create programatically 
+  entryComponents: []
 })
 export class AppModule { }
